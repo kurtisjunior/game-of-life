@@ -65,42 +65,48 @@ class Board extends React.Component {
   };
 
   onSubmit = () => {
-    const { grid } = this.state;
-
-    const next = new Array(10);
-    for (let i = 0; i < next.length; i++) {
-      next[i] = new Array(10);
-    }
-    for (let i = 0; i < grid.length; i++) {
-      for (let j = 0; j < grid[i].length; j++) {
-        if (
-          i === 0 ||
-          i === grid[i].length - 1 ||
-          j === 0 ||
-          j === grid[i].length - 1
-        ) {
-          next[i][j] = grid[i][j];
-        } else {
-          let neighbour = 0;
-          neighbour += grid[i - 1][j - 1];
-          neighbour += grid[i - 1][j];
-          neighbour += grid[i - 1][j + 1];
-          neighbour += grid[i][j - 1];
-          neighbour += grid[i][j + 1];
-          neighbour += grid[i + 1][j - 1];
-          neighbour += grid[i + 1][j];
-          neighbour += grid[i + 1][j + 1];
-          if (neighbour < 2 || neighbour > 3) {
-            next[i][j] = 0;
-          } else if (neighbour === 2 || neighbour === 3) {
-            next[i][j] = 1;
+    const nextIteration = () => {
+      const { grid } = this.state;
+      const next = new Array(10);
+      for (let i = 0; i < next.length; i++) {
+        next[i] = new Array(10);
+      }
+      for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+          if (
+            i === 0 ||
+            i === grid[i].length - 1 ||
+            j === 0 ||
+            j === grid[i].length - 1
+          ) {
+            next[i][j] = grid[i][j];
+          } else {
+            let neighbour = 0;
+            neighbour += grid[i - 1][j - 1];
+            neighbour += grid[i - 1][j];
+            neighbour += grid[i - 1][j + 1];
+            neighbour += grid[i][j - 1];
+            neighbour += grid[i][j + 1];
+            neighbour += grid[i + 1][j - 1];
+            neighbour += grid[i + 1][j];
+            neighbour += grid[i + 1][j + 1];
+            if (neighbour < 2 || neighbour > 3) {
+              next[i][j] = 0;
+            } else if (neighbour === 2 || neighbour === 3) {
+              next[i][j] = 1;
+            }
           }
         }
       }
+      this.setState({
+        grid: next
+      });
+    };
+    for (let i = 0; i < 100; i++) {
+      setTimeout(() => {
+        nextIteration();
+      }, 2000);
     }
-    this.setState({
-      grid: next
-    });
   };
 }
 
