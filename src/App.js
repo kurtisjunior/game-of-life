@@ -102,11 +102,9 @@ class Board extends React.Component {
         grid: next
       });
     };
-    for (let i = 0; i < 100; i++) {
-      setTimeout(() => {
-        nextIteration();
-      }, 2000);
-    }
+    setInterval(() => {
+      nextIteration();
+    }, 500);
   };
 }
 
