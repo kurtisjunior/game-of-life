@@ -22,15 +22,15 @@ ul {
   background: black;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 24px;
-  height: 24px;
+  line-height: 18px;
+  height: 18px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 24px;
+  width: 18px;
 }
 
 .square-two {
@@ -38,15 +38,15 @@ ul {
   color: white;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 24px;
-  height: 24px;
+  line-height: 18px;
+  height: 18px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 24px;
+  width: 18px;
 }
 
 *:focus {
@@ -64,9 +64,18 @@ ul {
 
 .my-grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(40, 1fr);
+  margin-top: 10%;
+  margin-left: 10%;
 }
 
 .game-board {
-  background-color: blue;
+}
+
+.button-one {
+  margin-left: 10%;
+}
+
+.button-two {
+  margin-left: 3%;
 }

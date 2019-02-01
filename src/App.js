@@ -8,24 +8,6 @@ class App extends Component {
 }
 export default App;
 
-{
-  /* <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(0)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div> */
-}
-
 //square dead and has three neightbours then it's born
 //square alive and has less than 2 neighbours or more than 3 it dies
 //otherwise a live cell lives and a dead cell remains dead

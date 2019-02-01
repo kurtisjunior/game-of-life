@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Square from "./Square";
+import board from "../css/board.css";
 
-class Board extends React.Component {
+class Board extends Component {
   state = {
     grid: []
   };
@@ -23,13 +24,19 @@ class Board extends React.Component {
           })}
         </div>
 
-        <button onClick={() => this.onSubmit()}> PLAY </button>
-        <button onClick={() => this.stopIterations()}> STOP </button>
+        <button className="button-one" onClick={() => this.onSubmit()}>
+          {" "}
+          PLAY{" "}
+        </button>
+        <button className="button-two" onClick={() => this.stopIterations()}>
+          {" "}
+          STOP{" "}
+        </button>
       </>
     );
   }
   componentDidMount = () => {
-    this.grid(10, 10);
+    this.grid(40, 40);
   };
 
   grid = (colls, rows) => {
@@ -53,9 +60,9 @@ class Board extends React.Component {
   onSubmit = button => {
     const nextIteration = () => {
       const { grid } = this.state;
-      const next = new Array(10);
+      const next = new Array(40);
       for (let i = 0; i < next.length; i++) {
-        next[i] = new Array(10);
+        next[i] = new Array(40);
       }
       for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {
