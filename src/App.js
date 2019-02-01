@@ -11,7 +11,12 @@ export default App;
 class Square extends React.Component {
   render() {
     return (
-      <button className={this.props.value === 1 ? "square" : "square-two"}>
+      <button
+        onClick={() =>
+          this.props.buttonClick(this.props.value, this.props.y, this.props.x)
+        }
+        className={this.props.value === 1 ? "square" : "square-two"}
+      >
         {this.props.value}
       </button>
     );
@@ -23,8 +28,8 @@ class Board extends React.Component {
     grid: []
   };
 
-  renderSquare(v, i) {
-    return <Square value={v} key={i} />;
+  renderSquare(v, y, x) {
+    return <Square value={v} y={y} x={x} buttonClick={this.buttonClick} />;
   }
 
   render() {
@@ -33,9 +38,9 @@ class Board extends React.Component {
     ) : (
       <>
         <div className="my-grid">
-          {this.state.grid.map(col => {
-            return col.map((v, i) => {
-              return this.renderSquare(v, i);
+          {this.state.grid.map((col, y) => {
+            return col.map((v, x) => {
+              return this.renderSquare(v, y, x);
             });
           })}
         </div>
@@ -55,7 +60,8 @@ class Board extends React.Component {
 
     for (let i = 0; i < newGrid.length; i++) {
       for (let j = 0; j < newGrid[i].length; j++) {
-        newGrid[i][j] = Math.floor(Math.random() * 2);
+        newGrid[i][j] = 0;
+        // newGrid[i][j] = Math.floor(Math.random() * 2);
       }
     }
 
@@ -82,6 +88,7 @@ class Board extends React.Component {
             next[i][j] = grid[i][j];
           } else {
             let neighbour = 0;
+            let square = grid[i][j];
             neighbour += grid[i - 1][j - 1];
             neighbour += grid[i - 1][j];
             neighbour += grid[i - 1][j + 1];
@@ -90,10 +97,12 @@ class Board extends React.Component {
             neighbour += grid[i + 1][j - 1];
             neighbour += grid[i + 1][j];
             neighbour += grid[i + 1][j + 1];
-            if (neighbour < 2 || neighbour > 3) {
-              next[i][j] = 0;
-            } else if (neighbour === 2 || neighbour === 3) {
+            if (square === 0 && neighbour === 3) {
               next[i][j] = 1;
+            } else if (square === 1 && (neighbour < 2 || neighbour > 3)) {
+              next[i][j] = 0;
+            } else {
+              next[i][j] = square;
             }
           }
         }
@@ -105,6 +114,14 @@ class Board extends React.Component {
     setInterval(() => {
       nextIteration();
     }, 500);
+  };
+
+  buttonClick = (v, y, x) => {
+    let newGrid = this.state.grid.slice();
+    newGrid[y][x] = 1;
+    this.setState({
+      grid: newGrid
+    });
   };
 }
 
@@ -141,3 +158,25 @@ class Game extends React.Component {
           {this.renderSquare(8)}
         </div> */
 }
+
+//square dead and has three neightbours then it's born
+//square alive and has less than 2 neighbours or more than 3 it dies
+//otherwise a live cell lives and a dead cell remains dead
+
+// RIGHT
+// if (grid[i][j] === 0 && neighbour === 3) {
+//     next[i][j] = 1;
+//   } else if (grid[i][j] === 1 && (neighbour < 2 || neighbour > 3)) {
+//     next[i][j] = 0;
+//   } else {
+//     next[i][j] = grid[i][j];
+//   }
+
+//WRONG
+// if (neighbour < 2 || neighbour > 3) {
+//     next[i][j] = 0;
+//   } else if (neighbour === 2 || neighbour === 3) { -------> === 2 is incorrect. Otherwise its fine
+//     next[i][j] = 1;
+//   } else {
+//     next[i][j] = grid[i][j];
+//   }
