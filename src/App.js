@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Game from "./Components/Game";
-import index from "./css/index.css";
 
 class App extends Component {
   render() {
