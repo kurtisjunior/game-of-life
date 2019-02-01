@@ -44,7 +44,9 @@ class Board extends React.Component {
             });
           })}
         </div>
+
         <button onClick={() => this.onSubmit()}> PLAY </button>
+        <button onClick={() => this.stopIterations()}> STOP </button>
       </>
     );
   }
@@ -70,7 +72,7 @@ class Board extends React.Component {
     });
   };
 
-  onSubmit = () => {
+  onSubmit = button => {
     const nextIteration = () => {
       const { grid } = this.state;
       const next = new Array(10);
@@ -111,9 +113,12 @@ class Board extends React.Component {
         grid: next
       });
     };
-    setInterval(() => {
-      nextIteration();
-    }, 500);
+    const newIteration = () => {
+      this.stop = setInterval(() => {
+        nextIteration();
+      }, 500);
+    };
+    newIteration();
   };
 
   buttonClick = (v, y, x) => {
@@ -122,6 +127,10 @@ class Board extends React.Component {
     this.setState({
       grid: newGrid
     });
+  };
+
+  stopIterations = () => {
+    clearInterval(this.stop);
   };
 }
 
