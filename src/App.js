@@ -123,7 +123,8 @@ class Board extends React.Component {
 
   buttonClick = (v, y, x) => {
     let newGrid = this.state.grid.slice();
-    newGrid[y][x] = 1;
+    if (v === 0) newGrid[y][x] = 1;
+    else if (v === 1) newGrid[y][x] = 0;
     this.setState({
       grid: newGrid
     });
