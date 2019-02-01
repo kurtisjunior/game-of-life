@@ -66,3 +66,7 @@ ul {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
 }
+
+.game-board {
+  background-color: red;
+}
