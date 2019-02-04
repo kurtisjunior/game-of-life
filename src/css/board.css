@@ -64,18 +64,89 @@ ul {
 
 .my-grid {
   display: grid;
-  grid-template-columns: repeat(40, 1fr);
-  margin-top: 10%;
-  margin-left: 10%;
+  grid-template-columns: repeat(50, 1fr);
+  margin-top: 3%;
+  margin-left: 3%;
 }
 
 .game-board {
 }
 
 .button-one {
-  margin-left: 10%;
+  margin-left: 3%;
 }
 
 .button-two {
   margin-left: 3%;
+}
+
+.game-info-col {
+  margin-left: 5%;
+}
+
+.game-info {
+  margin-top: 2%;
+}
+
+.pattern {
+  height: 10%;
+  width: 10%;
+}
+
+.pattern-two {
+  height: 11%;
+  width: 11.7%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.pattern-three {
+  height: 20%;
+  width: 19%;
+  margin-left: 3%;
+}
+
+.oscillator-pattern {
+  height: 6%;
+  width: 6%;
+}
+
+.stable-pattern {
+  height: 10%;
+  width: 10%;
+}
+
+.stable-pattern-two {
+  height: 10%;
+  width: 10%;
+  margin-left: 3%;
+}
+
+.stable-pattern-three {
+  height: 10%;
+  width: 9.5%;
+  margin-left: 3%;
+}
+
+.stable-pattern-four {
+  height: 10%;
+  width: 9.5%;
+  margin-left: 3%;
+}
+
+.john-conway {
+  margin-top: 3.5%;
+}
+
+.youtube-video-link {
+  margin-right: 3%;
+}
+
+.pattern-catalogue {
+  margin-left: 3%;
+}
+
+.footer {
+  margin-top: 0.5%;
+  font-size: 10px;
 }

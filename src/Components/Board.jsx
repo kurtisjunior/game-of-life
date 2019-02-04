@@ -36,7 +36,7 @@ class Board extends Component {
     );
   }
   componentDidMount = () => {
-    this.grid(40, 40);
+    this.grid(50, 50);
   };
 
   grid = (colls, rows) => {
@@ -60,9 +60,9 @@ class Board extends Component {
   onSubmit = button => {
     const nextIteration = () => {
       const { grid } = this.state;
-      const next = new Array(40);
+      const next = new Array(50);
       for (let i = 0; i < next.length; i++) {
-        next[i] = new Array(40);
+        next[i] = new Array(50);
       }
       for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {
