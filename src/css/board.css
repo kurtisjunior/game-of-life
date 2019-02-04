@@ -126,6 +126,11 @@
   margin-left: 3%;
 }
 
+.iteration-count {
+  margin-left: 20%;
+  font-family: "Libre Baskerville", Georgia, serif;
+}
+
 .footer {
   margin-top: 0.1%;
   font-size: 10px;

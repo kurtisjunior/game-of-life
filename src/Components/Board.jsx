@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Square from "./Square";
-import board from "../css/board.css";
-import { Button } from "reactstrap";
+import "../css/board.css";
 
 class Board extends Component {
   state = {
     grid: [],
+    iterations: 0,
     playButton: false
   };
 
@@ -37,6 +37,9 @@ class Board extends Component {
           {" "}
           STOP{" "}
         </button>
+        <span className="iteration-count">
+          Iterations: {this.state.iterations}
+        </span>
       </>
     );
   }
@@ -53,7 +56,6 @@ class Board extends Component {
     for (let i = 0; i < newGrid.length; i++) {
       for (let j = 0; j < newGrid[i].length; j++) {
         newGrid[i][j] = 0;
-        // newGrid[i][j] = Math.floor(Math.random() * 2);
       }
     }
 
@@ -99,8 +101,11 @@ class Board extends Component {
           }
         }
       }
+      let newIteration = this.state.iterations;
+      newIteration += 1;
       this.setState({
         grid: next,
+        iterations: newIteration,
         playButton: true
       });
     };

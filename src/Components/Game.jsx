@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import Board from "../Components/Board";
 
-import layout from "../css/layout.css";
+import "../css/layout.css";
 import {
   Container,
   Row,
   Col,
   Media,
   Card,
-  CardImg,
   CardBody,
-  CardTitle,
-  CardSubtitle,
   CardText,
   CardLink
 } from "reactstrap";
@@ -144,7 +141,7 @@ class Game extends Component {
               <img
                 width="25%"
                 src="https://media.wired.com/photos/595481de8e8cc150fa8ec1f3/master/pass/Conway_1k.jpg"
-                alt="Card image cap"
+                alt="John Conway"
               />
               <CardBody>
                 <CardText className="pattern-text">More information:</CardText>
