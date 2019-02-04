@@ -4,7 +4,8 @@ import board from "../css/board.css";
 
 class Board extends Component {
   state = {
-    grid: []
+    grid: [],
+    playButton: false
   };
 
   renderSquare(v, y, x) {
@@ -24,7 +25,11 @@ class Board extends Component {
           })}
         </div>
 
-        <button className="button-one" onClick={() => this.onSubmit()}>
+        <button
+          className="button-one"
+          disabled={this.state.playButton}
+          onClick={() => this.onSubmit()}
+        >
           {" "}
           PLAY{" "}
         </button>
@@ -57,7 +62,7 @@ class Board extends Component {
     });
   };
 
-  onSubmit = button => {
+  onSubmit = () => {
     const nextIteration = () => {
       const { grid } = this.state;
       const next = new Array(50);
@@ -95,7 +100,8 @@ class Board extends Component {
         }
       }
       this.setState({
-        grid: next
+        grid: next,
+        playButton: true
       });
     };
     const newIteration = () => {
@@ -117,6 +123,9 @@ class Board extends Component {
 
   stopIterations = () => {
     clearInterval(this.stop);
+    this.setState({
+      playButton: false
+    });
   };
 }
 

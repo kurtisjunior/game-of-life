@@ -40,7 +40,7 @@ class Game extends Component {
               pattern behaves per the{" "}
               <a href="http://www.conwaylife.com/wiki/Conway%27s_Game_of_Life#Rules">
                 {" "}
-                rules{" "}
+                rules
               </a>{" "}
               of the game on each iteration.
             </p>
