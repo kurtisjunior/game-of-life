@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Square from "./Square";
 import board from "../css/board.css";
+import { Button } from "reactstrap";
 
 class Board extends Component {
   state = {
@@ -24,7 +25,6 @@ class Board extends Component {
             });
           })}
         </div>
-
         <button
           className="button-one"
           disabled={this.state.playButton}

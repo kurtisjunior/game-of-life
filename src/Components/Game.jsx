@@ -34,7 +34,7 @@ class Game extends Component {
             </div>
           </Col>
           <Col className="game-info-col">
-            <h2>How to play</h2>
+            <h2 className="header">How to play</h2>
             <p>
               Select squares to make a pattern and hit play. Then watch how your
               pattern behaves per the{" "}
@@ -46,7 +46,9 @@ class Game extends Component {
             </p>
             <Media className="game-info">
               <Media>
-                <Media heading>Stable patterns</Media>
+                <Media className="heading" heading>
+                  Stable patterns
+                </Media>
                 <Media
                   className="stable-pattern"
                   object
@@ -72,7 +74,7 @@ class Game extends Component {
                   alt="stable"
                 />
               </Media>
-              <Media body>
+              <Media className="pattern-text" body>
                 The above patterns are a small example of 'still lifes'. In
                 other words when the cells are either selected like the above,
                 or end up like the above after some iterations, from thereon
@@ -82,7 +84,9 @@ class Game extends Component {
             </Media>
             <Media className="mt-1">
               <Media>
-                <Media heading>Oscillators</Media>
+                <Media className="heading" heading>
+                  Oscillators
+                </Media>
                 <Media
                   className="oscillator-pattern"
                   object
@@ -90,14 +94,16 @@ class Game extends Component {
                   alt="oscillator pattern"
                 />
               </Media>
-              <Media body>
+              <Media className="pattern-text" body>
                 Oscillators return to their original pattern after a certain
                 number of generations.
               </Media>
             </Media>
             <Media className="mt-1">
               <Media>
-                <Media heading>Spaceships</Media>
+                <Media className="heading" heading>
+                  Spaceships
+                </Media>
                 <Media
                   className="pattern"
                   object
@@ -128,7 +134,7 @@ class Game extends Component {
                   src="http://pi.math.cornell.edu/~lipa/mec/meth.png"
                   alt="spaceship pattern five"
                 />
-                <Media body>
+                <Media className="pattern-text" body>
                   Spaceships move and evolve across the grid on each iteration.{" "}
                 </Media>
               </Media>
@@ -141,7 +147,7 @@ class Game extends Component {
                 alt="Card image cap"
               />
               <CardBody>
-                <CardText>More information</CardText>
+                <CardText className="pattern-text">More information:</CardText>
                 <CardLink
                   className="youtube-video-link"
                   href="https://www.youtube.com/watch?v=R9Plq-D1gEk"

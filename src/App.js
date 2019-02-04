@@ -31,9 +31,9 @@ export default App;
 //   }
 
 /*to do:
-disable and enable start button
-change font
-align text 
+disable and enable start button / 
+change font / 
+align text  / 
 host the app 
 write the readme
 modulo the outside sqaures

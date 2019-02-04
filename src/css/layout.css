@@ -5,4 +5,31 @@
 
 .title-text {
   text-align: center;
+  font-family: "Libre Baskerville", Georgia, serif;
+}
+
+.header {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: normal;
+  text-align: center;
+}
+
+.heading {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+p {
+  font-family: "Libre Baskerville", Georgia, serif;
+  text-align: left;
+}
+
+.pattern-text {
+  font-family: "Libre Baskerville", Georgia, serif;
+  text-align: left;
+}
+
+a {
+  font-family: "Libre Baskerville", Georgia, serif;
 }
