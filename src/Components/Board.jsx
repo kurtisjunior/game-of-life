@@ -38,7 +38,7 @@ class Board extends Component {
           STOP{" "}
         </button>
         <span className="iteration-count">
-          Iterations: {this.state.iterations}
+          Generations: {this.state.iterations}
         </span>
       </>
     );

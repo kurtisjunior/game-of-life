@@ -1,6 +1,6 @@
 # John Horton Conway's Game of Life
 
-Live app:
+Live app: https://kurtis-game-of-life.netlify.com/
 
 This is a Javascript React app implementation of John Horton Conway's Game of Life.
 
@@ -13,6 +13,6 @@ In short:
 1. GIT CLONE <URL>
 2. NPM INSTALL
 
-Finally, run NPM START and visit http://localhost:9090/api/???
+Finally, run NPM START and visit http://localhost:3000/
 
 Author: Kurtis Angell.
