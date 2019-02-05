@@ -147,7 +147,6 @@ class Board extends Component {
 
   changeSpeed = direction => {
     let speed = this.state.speed;
-
     if (direction === "up" && speed > 31.25) {
       speed = speed / 2;
     } else if (direction === "down" && speed < 1000) {
