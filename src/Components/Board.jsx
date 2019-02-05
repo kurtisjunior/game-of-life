@@ -6,7 +6,8 @@ class Board extends Component {
   state = {
     grid: [],
     iterations: 0,
-    playButton: false
+    playButton: false,
+    speed: 500
   };
 
   renderSquare(v, y, x) {
@@ -40,6 +41,25 @@ class Board extends Component {
         <span className="iteration-count">
           Generations: {this.state.iterations}
         </span>
+        <span className="speed">Speed: {this.state.speed / 1000}</span>
+        <button
+          className="faster"
+          disabled={this.state.playButton}
+          onClick={() => {
+            this.changeSpeed("up");
+          }}
+        >
+          faster
+        </button>
+        <button
+          className="slower"
+          disabled={this.state.playButton}
+          onClick={() => {
+            this.changeSpeed("down");
+          }}
+        >
+          Slower
+        </button>
       </>
     );
   }
@@ -104,7 +124,7 @@ class Board extends Component {
     const newIteration = () => {
       this.stop = setInterval(() => {
         nextIteration();
-      }, 500);
+      }, this.state.speed);
     };
     newIteration();
   };
@@ -122,6 +142,19 @@ class Board extends Component {
     clearInterval(this.stop);
     this.setState({
       playButton: false
+    });
+  };
+
+  changeSpeed = direction => {
+    let speed = this.state.speed;
+
+    if (direction === "up" && speed > 31.25) {
+      speed = speed / 2;
+    } else if (direction === "down" && speed < 1000) {
+      speed = speed * 2;
+    }
+    this.setState({
+      speed: speed
     });
   };
 }

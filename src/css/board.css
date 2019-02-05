@@ -53,7 +53,7 @@
 }
 
 .button-one {
-  margin-left: 3%;
+  margin-left: 6%;
 }
 
 .button-two {
@@ -127,8 +127,28 @@
 }
 
 .iteration-count {
-  margin-left: 20%;
+  margin-left: 18%;
   font-family: "Libre Baskerville", Georgia, serif;
+}
+
+.speed {
+  margin-left: 10%;
+  font-family: "Libre Baskerville", Georgia, serif;
+  float: center;
+}
+
+.faster {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 80%;
+  float: right;
+  margin-left: 3%;
+}
+
+.slower {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 80%;
+  float: right;
+  margin-right: 2%;
 }
 
 .footer {
