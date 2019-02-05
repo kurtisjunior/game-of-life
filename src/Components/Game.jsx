@@ -33,13 +33,13 @@ class Game extends Component {
           <Col className="game-info-col">
             <h2 className="header">How to play</h2>
             <p>
-              Select squares to make a pattern and hit play. Then watch how your
-              pattern behaves per the{" "}
+              Select squares on the infinite grid to make a pattern and hit
+              play. Then watch how your pattern behaves per the{" "}
               <a href="http://www.conwaylife.com/wiki/Conway%27s_Game_of_Life#Rules">
                 {" "}
                 rules
               </a>{" "}
-              of the game on each iteration.
+              of the game on each generation.
             </p>
             <Media className="game-info">
               <Media>
