@@ -34,7 +34,8 @@ export default App;
 disable and enable start button / 
 change font / 
 align text  / 
-host the app 
-write the readme
-modulo the outside sqaures
+host the app  / 
+write the readme / 
+modulo the outside sqaures / 
+faster and slower buttons 
 */

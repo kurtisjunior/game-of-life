@@ -73,31 +73,23 @@ class Board extends Component {
       }
       for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[i].length; j++) {
-          if (
-            i === 0 ||
-            i === grid[i].length - 1 ||
-            j === 0 ||
-            j === grid[i].length - 1
-          ) {
-            next[i][j] = grid[i][j];
+          let neighbour = 0;
+          let square = grid[i][j];
+          neighbour +=
+            grid[(((i - 1) % 50) + 50) % 50][(j - (1 % 50) + 50) % 50];
+          neighbour += grid[(((i - 1) % 50) + 50) % 50][j];
+          neighbour += grid[(((i - 1) % 50) + 50) % 50][(j + 1) % 50];
+          neighbour += grid[i][(((j - 1) % 50) + 50) % 50];
+          neighbour += grid[i][(j + 1) % 50];
+          neighbour += grid[(i + 1) % 50][(((j - 1) % 50) + 50) % 50];
+          neighbour += grid[(i + 1) % 50][j];
+          neighbour += grid[(i + 1) % 50][(j + 1) % 50];
+          if (square === 0 && neighbour === 3) {
+            next[i][j] = 1;
+          } else if (square === 1 && (neighbour < 2 || neighbour > 3)) {
+            next[i][j] = 0;
           } else {
-            let neighbour = 0;
-            let square = grid[i][j];
-            neighbour += grid[i - 1][j - 1];
-            neighbour += grid[i - 1][j];
-            neighbour += grid[i - 1][j + 1];
-            neighbour += grid[i][j - 1];
-            neighbour += grid[i][j + 1];
-            neighbour += grid[i + 1][j - 1];
-            neighbour += grid[i + 1][j];
-            neighbour += grid[i + 1][j + 1];
-            if (square === 0 && neighbour === 3) {
-              next[i][j] = 1;
-            } else if (square === 1 && (neighbour < 2 || neighbour > 3)) {
-              next[i][j] = 0;
-            } else {
-              next[i][j] = square;
-            }
+            next[i][j] = square;
           }
         }
       }
