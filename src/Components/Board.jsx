@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Square from "./Square";
+import { gridSize } from "../utility/constant.js";
 import "../css/board.css";
 
 class Board extends Component {
@@ -7,7 +8,8 @@ class Board extends Component {
     grid: [],
     iterations: 0,
     playButton: false,
-    speed: 500
+    speed: 500,
+    gridSize: gridSize
   };
 
   renderSquare(v, y, x) {
@@ -62,7 +64,7 @@ class Board extends Component {
     );
   }
   componentDidMount = () => {
-    this.grid(50, 50);
+    this.grid(gridSize, gridSize);
   };
 
   grid = (colls, rows) => {
@@ -85,32 +87,13 @@ class Board extends Component {
   onSubmit = () => {
     const nextIteration = () => {
       const { grid } = this.state;
-      const next = new Array(50);
+      const next = new Array(gridSize);
       for (let i = 0; i < next.length; i++) {
-        next[i] = new Array(50);
+        next[i] = new Array(gridSize);
       }
-      for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[i].length; j++) {
-          let neighbour = 0;
-          let square = grid[i][j];
-          neighbour +=
-            grid[(((i - 1) % 50) + 50) % 50][(j - (1 % 50) + 50) % 50];
-          neighbour += grid[(((i - 1) % 50) + 50) % 50][j];
-          neighbour += grid[(((i - 1) % 50) + 50) % 50][(j + 1) % 50];
-          neighbour += grid[i][(((j - 1) % 50) + 50) % 50];
-          neighbour += grid[i][(j + 1) % 50];
-          neighbour += grid[(i + 1) % 50][(((j - 1) % 50) + 50) % 50];
-          neighbour += grid[(i + 1) % 50][j];
-          neighbour += grid[(i + 1) % 50][(j + 1) % 50];
-          if (square === 0 && neighbour === 3) {
-            next[i][j] = 1;
-          } else if (square === 1 && (neighbour < 2 || neighbour > 3)) {
-            next[i][j] = 0;
-          } else {
-            next[i][j] = square;
-          }
-        }
-      }
+
+      this.modifyGrid(grid, next, gridSize);
+
       let newIteration = this.state.iterations;
       newIteration += 1;
       this.setState({
@@ -125,6 +108,40 @@ class Board extends Component {
       }, this.state.speed);
     };
     newIteration();
+  };
+
+  modifyGrid = (grid, next, gridSize) => {
+    for (let i = 0; i < grid.length; i++) {
+      for (let j = 0; j < grid[i].length; j++) {
+        let neighbour = 0;
+        let square = grid[i][j];
+        neighbour +=
+          grid[(((i - 1) % gridSize) + gridSize) % gridSize][
+            (j - (1 % gridSize) + gridSize) % gridSize
+          ];
+        neighbour += grid[(((i - 1) % gridSize) + gridSize) % gridSize][j];
+        neighbour +=
+          grid[(((i - 1) % gridSize) + gridSize) % gridSize][
+            (j + 1) % gridSize
+          ];
+        neighbour += grid[i][(((j - 1) % gridSize) + gridSize) % gridSize];
+        neighbour += grid[i][(j + 1) % gridSize];
+        neighbour +=
+          grid[(i + 1) % gridSize][
+            (((j - 1) % gridSize) + gridSize) % gridSize
+          ];
+        neighbour += grid[(i + 1) % gridSize][j];
+        neighbour += grid[(i + 1) % gridSize][(j + 1) % gridSize];
+        if (square === 0 && neighbour === 3) {
+          next[i][j] = 1;
+        } else if (square === 1 && (neighbour < 2 || neighbour > 3)) {
+          next[i][j] = 0;
+        } else {
+          next[i][j] = square;
+        }
+      }
+    }
+    return next;
   };
 
   buttonClick = (v, y, x) => {
