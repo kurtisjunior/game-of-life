@@ -15,9 +15,7 @@ class Board extends Component {
   }
 
   render() {
-    return this.state.grid.length === 0 ? (
-      <div> loading </div>
-    ) : (
+    return (
       <>
         <div className="my-grid">
           {this.state.grid.map((col, y) => {
