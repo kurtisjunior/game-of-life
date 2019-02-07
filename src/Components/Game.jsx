@@ -19,7 +19,7 @@ class Game extends Component {
       <Container>
         <Row>
           <Col className="title">
-            <div class="title-text">John Horton Conway's Game of Life</div>
+            <div className="title-text">John Horton Conway's Game of Life</div>
           </Col>
         </Row>
         <Row style={{ display: "flex" }}>

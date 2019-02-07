@@ -49,4 +49,4 @@ const evolveGrid = (grid, nextGrid, gridSize) => {
   return nextGrid;
 };
 
-module.exports = { createNewGrid, createGameGrid, evolveGrid };
+module.exports = { createGameGrid, createNewGrid, evolveGrid };
