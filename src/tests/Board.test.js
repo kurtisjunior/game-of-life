@@ -17,7 +17,7 @@ describe("<Board />", () => {
   it("renders the correct intial values in state", () => {
     const wrapper = shallow(<Board />);
     expect(wrapper.state().grid.length).toBe(50);
-    expect(wrapper.state().iterations).toBe(0);
+    expect(wrapper.state().generations).toBe(0);
     expect(wrapper.state().playButton).toBe(false);
     expect(wrapper.state().speed).toBe(500);
   });

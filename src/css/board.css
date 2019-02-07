@@ -33,10 +33,6 @@
   outline: none !important;
 }
 
-/* .kbd-navigation .square:focus {
-  background: #ddd;
-} */
-
 .game {
   display: flex;
   flex-direction: row;
@@ -47,9 +43,6 @@
   grid-template-columns: repeat(50, 1fr);
   margin-top: 3%;
   margin-left: 3%;
-}
-
-.game-board {
 }
 
 .button-one {

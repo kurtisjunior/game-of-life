@@ -3,12 +3,15 @@ import { shallow, mount } from "enzyme";
 import React, { Component } from "react";
 import Adapter from "enzyme-adapter-react-16";
 import Board from "../Components/Board";
-import Square from "../Components/Board";
+import Game from "../Components/Board";
 Enzyme.configure({ adapter: new Adapter() });
 
-describe("<Board />", () => {
+describe("<Game />", () => {
+  it("renders without throwing errors", () => {
+    shallow(<Game />);
+  });
   it("renders the <Square /> component", () => {
-    const wrapper = mount(<Board />);
-    expect(wrapper.find(Square)).toHaveLength(1);
+    const wrapper = mount(<Game />);
+    expect(wrapper.find(Board)).toHaveLength(1);
   });
 });

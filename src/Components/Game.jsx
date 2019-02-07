@@ -25,7 +25,7 @@ class Game extends Component {
         <Row style={{ display: "flex" }}>
           <Col>
             <div className="game">
-              <div className="game-board">
+              <div>
                 <Board />
               </div>
             </div>

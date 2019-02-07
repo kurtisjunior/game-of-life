@@ -26,11 +26,4 @@ describe("<Board />", () => {
     expect(wrapper.find("button").simulate("click"));
     expect(squareClick.calledOnce).toBe(true);
   });
-  it("Changes value of square when clicked", () => {
-    const squareClick = sinon.spy();
-    const value = 0;
-    const wrapper = shallow(<Square buttonClick={squareClick} value={value} />);
-    expect(wrapper.find("button").simulate("click"));
-    expect(squareClick.calledOnce).toBe(true);
-  });
 });
