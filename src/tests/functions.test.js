@@ -75,7 +75,7 @@ describe("createNewGrid", () => {
 });
 
 describe("evolveGrid", () => {
-  it("returns no live cells when there are no live cells", () => {
+  it("When there are no live cells then on the next generation there are still no live cells", () => {
     const testGameGrid = createGameGrid(5, 5);
     const testNextGrid = createNewGrid(5);
     const testGridGeneration = evolveGrid(testGameGrid, testNextGrid, 5);
