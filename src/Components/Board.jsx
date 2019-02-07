@@ -1,34 +1,41 @@
 import React, { Component } from "react";
 import Square from "./Square";
 import { gridSize } from "../utility/constant.js";
+import {
+  evolveGrid,
+  createGameGrid,
+  createNewGrid
+} from "../utility/gameLogic";
 import "../css/board.css";
 
 class Board extends Component {
   state = {
     grid: [],
-    iterations: 0,
+    generations: 0,
     playButton: false,
     speed: 500,
     gridSize: gridSize
   };
 
-  renderSquare(v, y, x) {
-    return <Square value={v} y={y} x={x} buttonClick={this.buttonClick} />;
+  renderSquare(value, y, x) {
+    return <Square value={value} y={y} x={x} buttonClick={this.buttonClick} />;
   }
 
   render() {
+    const { grid, generations, playButton, speed } = this.state;
+
     return (
       <>
         <div className="my-grid">
-          {this.state.grid.map((col, y) => {
-            return col.map((v, x) => {
-              return this.renderSquare(v, y, x);
+          {grid.map((col, y) => {
+            return col.map((value, x) => {
+              return this.renderSquare(value, y, x);
             });
           })}
         </div>
         <button
           className="button-one"
-          disabled={this.state.playButton}
+          disabled={playButton}
           onClick={() => this.onSubmit()}
         >
           {" "}
@@ -38,13 +45,11 @@ class Board extends Component {
           {" "}
           STOP{" "}
         </button>
-        <span className="iteration-count">
-          Generations: {this.state.iterations}
-        </span>
-        <span className="speed">Speed: {this.state.speed / 1000}</span>
+        <span className="iteration-count">Generations: {generations}</span>
+        <span className="speed">Speed: {speed / 1000}</span>
         <button
           className="faster"
-          disabled={this.state.playButton}
+          disabled={playButton}
           onClick={() => {
             this.changeSpeed("up");
           }}
@@ -53,7 +58,7 @@ class Board extends Component {
         </button>
         <button
           className="slower"
-          disabled={this.state.playButton}
+          disabled={playButton}
           onClick={() => {
             this.changeSpeed("down");
           }}
@@ -68,88 +73,47 @@ class Board extends Component {
   };
 
   grid = (colls, rows) => {
-    const newGrid = new Array(colls);
-    for (let i = 0; i < newGrid.length; i++) {
-      newGrid[i] = new Array(rows);
-    }
-
-    for (let i = 0; i < newGrid.length; i++) {
-      for (let j = 0; j < newGrid[i].length; j++) {
-        newGrid[i][j] = 0;
-      }
-    }
+    const grid = createGameGrid(colls, rows);
 
     this.setState({
-      grid: newGrid
+      grid
     });
   };
 
   onSubmit = () => {
-    const nextIteration = () => {
-      const { grid } = this.state;
-      const next = new Array(gridSize);
-      for (let i = 0; i < next.length; i++) {
-        next[i] = new Array(gridSize);
-      }
+    const nextGeneration = () => {
+      const { grid, generations } = this.state;
 
-      this.modifyGrid(grid, next, gridSize);
+      let nextGrid = createNewGrid(gridSize);
 
-      let newIteration = this.state.iterations;
-      newIteration += 1;
+      evolveGrid(grid, nextGrid, gridSize);
+
+      let generationCount = generations;
+      generationCount += 1;
+
       this.setState({
-        grid: next,
-        iterations: newIteration,
+        grid: nextGrid,
+        generations: generationCount,
         playButton: true
       });
     };
-    const newIteration = () => {
+
+    const continueGenerations = () => {
+      const { speed } = this.state;
       this.stop = setInterval(() => {
-        nextIteration();
-      }, this.state.speed);
+        nextGeneration();
+      }, speed);
     };
-    newIteration();
+    continueGenerations();
   };
 
-  modifyGrid = (grid, next, gridSize) => {
-    for (let i = 0; i < grid.length; i++) {
-      for (let j = 0; j < grid[i].length; j++) {
-        let neighbour = 0;
-        let square = grid[i][j];
-        neighbour +=
-          grid[(((i - 1) % gridSize) + gridSize) % gridSize][
-            (j - (1 % gridSize) + gridSize) % gridSize
-          ];
-        neighbour += grid[(((i - 1) % gridSize) + gridSize) % gridSize][j];
-        neighbour +=
-          grid[(((i - 1) % gridSize) + gridSize) % gridSize][
-            (j + 1) % gridSize
-          ];
-        neighbour += grid[i][(((j - 1) % gridSize) + gridSize) % gridSize];
-        neighbour += grid[i][(j + 1) % gridSize];
-        neighbour +=
-          grid[(i + 1) % gridSize][
-            (((j - 1) % gridSize) + gridSize) % gridSize
-          ];
-        neighbour += grid[(i + 1) % gridSize][j];
-        neighbour += grid[(i + 1) % gridSize][(j + 1) % gridSize];
-        if (square === 0 && neighbour === 3) {
-          next[i][j] = 1;
-        } else if (square === 1 && (neighbour < 2 || neighbour > 3)) {
-          next[i][j] = 0;
-        } else {
-          next[i][j] = square;
-        }
-      }
-    }
-    return next;
-  };
-
-  buttonClick = (v, y, x) => {
-    let newGrid = this.state.grid.slice();
-    if (v === 0) newGrid[y][x] = 1;
-    else if (v === 1) newGrid[y][x] = 0;
+  buttonClick = (value, y, x) => {
+    const { grid } = this.state;
+    let updateGrid = grid.slice();
+    if (value === 0) updateGrid[y][x] = 1;
+    else if (value === 1) updateGrid[y][x] = 0;
     this.setState({
-      grid: newGrid
+      grid: updateGrid
     });
   };
 
@@ -161,14 +125,15 @@ class Board extends Component {
   };
 
   changeSpeed = direction => {
-    let speed = this.state.speed;
-    if (direction === "up" && speed > 31.25) {
-      speed = speed / 2;
-    } else if (direction === "down" && speed < 1000) {
-      speed = speed * 2;
+    const { speed } = this.state;
+    let newSpeed = speed;
+    if (direction === "up" && newSpeed > 31.25) {
+      newSpeed = newSpeed / 2;
+    } else if (direction === "down" && newSpeed < 1000) {
+      newSpeed = newSpeed * 2;
     }
     this.setState({
-      speed: speed
+      speed: newSpeed
     });
   };
 }

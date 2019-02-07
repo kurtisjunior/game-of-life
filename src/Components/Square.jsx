@@ -2,14 +2,13 @@ import React, { Component } from "react";
 
 class Square extends Component {
   render() {
+    const { buttonClick, value, y, x } = this.props;
     return (
       <button
-        onClick={() =>
-          this.props.buttonClick(this.props.value, this.props.y, this.props.x)
-        }
-        className={this.props.value === 1 ? "square" : "square-two"}
+        onClick={() => buttonClick(value, y, x)}
+        className={value === 1 ? "square" : "square-two"}
       >
-        {this.props.value}
+        {value}
       </button>
     );
   }
