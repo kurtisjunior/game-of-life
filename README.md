@@ -6,7 +6,7 @@ This is a Javascript React app implementation of John Horton Conway's Game of Li
 
 ### To run the app on the client side:
 
-Fork a version to your profile. Then clone and open the link in an editor. Next, run the command NPM INSTALL to install all of the app dependencies.
+Fork a version to your profile. Then clone and open the link in an editor. Next, run the command NPM INSTALL to install the app dependencies.
 
 In short:
 
@@ -18,6 +18,6 @@ Finally, run NPM START and visit http://localhost:3000/
 
 ### To run tests on the client side
 
-Run the command NPM TEST for a summary of all tests, or NPM TEST < file name > to see the details of each test file.
+Run the command NPM TEST for a summary of all tests, or NPM TEST < file name > to see the descriptions associated with each test.
 
 Author: Kurtis Angell.
