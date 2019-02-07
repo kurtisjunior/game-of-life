@@ -15,7 +15,7 @@ In short:
 
 Finally, run NPM START and visit http://localhost:3000/
 
-#### To run tests on the client side
+### To run tests on the client side
 
 Run the command NPM TEST for a summary of all tests, or NPM TEST < file name > to see the details of each test file.
 
