@@ -6,12 +6,13 @@ This is a Javascript React app implementation of John Horton Conway's Game of Li
 
 ### To run the app on the client side:
 
-Fork a version to your profile. Then, copy the link, and run the command GIT CLONE followed by the URL. Open the file in visual studio, or similar dev tool program. Next, run the command NPM INSTALL.
+Fork a version to your profile. Then clone and open the link in an editor. Next, run the command NPM INSTALL to install all of the app dependencies.
 
 In short:
 
 1. GIT CLONE <URL>
-2. NPM INSTALL
+2. OPEN DIRECTORY
+3. NPM INSTALL
 
 Finally, run NPM START and visit http://localhost:3000/
 
