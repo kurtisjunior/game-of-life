@@ -125,12 +125,6 @@ class Game extends Component {
                   src="http://pi.math.cornell.edu/~lipa/mec/meth.png"
                   alt="spaceship pattern four"
                 />
-                <Media
-                  className="pattern-three"
-                  object
-                  src="http://pi.math.cornell.edu/~lipa/mec/meth.png"
-                  alt="spaceship pattern five"
-                />
                 <Media className="pattern-text" body>
                   Spaceships move and evolve across the grid on each iteration.{" "}
                 </Media>
